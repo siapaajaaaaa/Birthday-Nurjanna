@@ -1,0 +1,264 @@
+<!-- question.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Letter 💌</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background:linear-gradient(135deg,#ffd6e7,#ffc2d1,#ffe5ec);
+  font-family:'Poppins',sans-serif;
+  position:relative;
+}
+
+/* FLOAT HEART */
+.heart{
+  position:absolute;
+  bottom:-50px;
+  animation:float 6s linear infinite;
+  opacity:0.7;
+}
+
+@keyframes float{
+  0%{
+    transform:translateY(0);
+    opacity:0;
+  }
+  50%{
+    opacity:1;
+  }
+  100%{
+    transform:translateY(-110vh);
+    opacity:0;
+  }
+}
+
+/* TITLE */
+.title{
+  font-family:'Pacifico',cursive;
+  color:#ff1493;
+  font-size:2.4rem;
+  margin-bottom:15px;
+  text-align:center;
+  animation:fade 1s;
+}
+
+.subtitle{
+  color:#ff1493;
+  margin-bottom:30px;
+  text-align:center;
+  animation:fade 1.2s;
+}
+
+/* ENVELOPE */
+.envelope{
+  width:280px;
+  cursor:pointer;
+  transition:1.5s;
+  z-index:5;
+  animation:floatEnvelope 3s ease-in-out infinite;
+}
+
+@keyframes floatEnvelope{
+  0%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-10px);
+  }
+  100%{
+    transform:translateY(0);
+  }
+}
+
+.envelope img{
+  width:100%;
+  filter:drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+}
+
+/* BUTTON */
+.btn-group{
+  margin-top:30px;
+  position:relative;
+  width:300px;
+  height:100px;
+}
+
+.yes-btn,
+.no-btn{
+  padding:13px 28px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  font-size:1rem;
+  transition:0.3s;
+  position:absolute;
+}
+
+.yes-btn{
+  left:40px;
+  background:#ff1493;
+  color:white;
+  box-shadow:0 0 15px rgba(255,20,147,0.4);
+}
+
+.yes-btn:hover{
+  transform:scale(1.08);
+}
+
+.no-btn{
+  right:40px;
+  background:white;
+  color:#ff1493;
+  font-weight:bold;
+}
+
+/* OPEN EFFECT */
+.open{
+  transform:scale(6) rotate(10deg);
+  opacity:0;
+}
+
+/* FADE */
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING HEART -->
+<script>
+
+for(let i=0;i<35;i++){
+
+  let heart=document.createElement("div");
+
+  heart.className="heart";
+  heart.innerHTML="💖";
+
+  heart.style.left=Math.random()*100+"%";
+  heart.style.fontSize=(Math.random()*20+15)+"px";
+  heart.style.animationDuration=(Math.random()*5+5)+"s";
+
+  document.body.appendChild(heart);
+
+}
+
+</script>
+
+<!-- TITLE -->
+<h1 class="title">
+Special Surat Buat Kamu 💌
+</h1>
+
+<p class="subtitle" id="subtitle">
+Apakah kamu ingin membaca surat ini? 🥺💗
+</p>
+
+<!-- ENVELOPE -->
+<div class="envelope" id="envelope">
+
+<img src="images/surat.jpg">
+
+</div>
+
+<!-- BUTTON -->
+<div class="btn-group">
+
+<button class="yes-btn" onclick="openLetter()">
+Iya 💖
+</button>
+
+<button class="no-btn" id="noBtn">
+No 😭
+</button>
+
+</div>
+
+<script>
+
+/* NO BUTTON */
+const noBtn=document.getElementById("noBtn");
+
+const texts=[
+  "Yakin nggak mau? 🥺",
+  "Ayooo baca suratnya 💌",
+  "Jangan ditolak dong 😭",
+  "Suratnya spesial loh 💖",
+  "Please pencet iya ajaa ✨"
+];
+
+let index=0;
+
+function moveButton(){
+
+  const x=Math.random()*(window.innerWidth-120);
+
+  const y=Math.random()*(window.innerHeight-120);
+
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
+
+  document.getElementById("subtitle").innerHTML=texts[index];
+
+  index++;
+
+  if(index >= texts.length){
+
+    index=0;
+
+  }
+
+}
+
+noBtn.addEventListener("mouseover",moveButton);
+noBtn.addEventListener("click",moveButton);
+noBtn.addEventListener("touchstart",moveButton);
+
+/* OPEN LETTER */
+function openLetter(){
+
+  const envelope=document.getElementById("envelope");
+
+  envelope.classList.add("open");
+
+  setTimeout(()=>{
+
+    window.location.href="ucapan.html";
+
+  },1500);
+
+}
+
+</script>
+
+</body>
+</html>

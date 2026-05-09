@@ -1,0 +1,385 @@
+<!-- ucapan.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday 💖</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  background:linear-gradient(135deg,#ffd6e7,#ffc2d1,#ffe5ec);
+  font-family:'Poppins',sans-serif;
+  color:#ff1493;
+  padding:30px 20px;
+  position:relative;
+}
+
+/* FLOATING */
+
+.float{
+  position:absolute;
+  animation:float 8s linear infinite;
+  opacity:0.8;
+  z-index:1;
+  pointer-events:none;
+}
+
+@keyframes float{
+
+  0%{
+    transform:translateY(0) rotate(0deg);
+    opacity:0;
+  }
+
+  50%{
+    opacity:1;
+  }
+
+  100%{
+    transform:translateY(-120vh) rotate(360deg);
+    opacity:0;
+  }
+
+}
+
+/* CONTAINER */
+
+.container{
+  width:100%;
+  max-width:850px;
+  margin:auto;
+  position:relative;
+  z-index:5;
+  animation:fade 1.5s;
+}
+
+@keyframes fade{
+
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* TITLE */
+
+.title{
+  font-family:'Pacifico',cursive;
+  text-align:center;
+  font-size:3rem;
+  margin-bottom:10px;
+  text-shadow:0 5px 10px rgba(255,255,255,0.5);
+}
+
+.subtitle{
+  text-align:center;
+  margin-bottom:35px;
+  font-size:1.1rem;
+  font-weight:500;
+}
+
+/* PHOTO */
+
+.photo-group{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:35px;
+}
+
+.photo{
+  width:280px;
+  height:340px;
+  object-fit:cover;
+  border-radius:30px;
+  border:5px solid white;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  transition:0.4s;
+}
+
+.photo:hover{
+  transform:scale(1.03);
+}
+
+/* SURAT */
+
+.card{
+  position:relative;
+  background:#fffafc;
+  padding:45px 35px;
+  border-radius:15px;
+  line-height:2.2;
+  box-shadow:
+  0 15px 35px rgba(0,0,0,0.12),
+  inset 0 0 30px rgba(255,192,203,0.15);
+
+  border:2px solid #ffd6e7;
+
+  background-image:
+  linear-gradient(to bottom, transparent 95%, #ffd6e7 100%);
+
+  background-size:100% 45px;
+
+  overflow:hidden;
+}
+
+/* LIPATAN SURAT */
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:90px;
+  height:90px;
+  background:linear-gradient(135deg,#ffe4ee 50%, #ffd1e3 50%);
+  clip-path:polygon(0 0,100% 0,100% 100%);
+  box-shadow:-5px 5px 10px rgba(0,0,0,0.05);
+}
+
+/* ICON */
+
+.icon-group{
+  text-align:center;
+  font-size:45px;
+  margin-bottom:25px;
+  animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+
+  0%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
+
+  100%{
+    transform:translateY(0);
+  }
+
+}
+
+/* TEXT */
+
+.card p{
+  margin-bottom:14px;
+  font-size:1rem;
+  font-weight:500;
+  color:#d63384;
+  text-align:justify;
+}
+
+/* GIFT */
+
+.gift{
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  font-size:55px;
+  animation:giftBounce 2s infinite;
+}
+
+@keyframes giftBounce{
+
+  0%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
+
+  100%{
+    transform:translateY(0);
+  }
+
+}
+
+/* BUTTON */
+
+.btn-wrap{
+  text-align:center;
+}
+
+.next-btn{
+  margin-top:25px;
+  padding:14px 30px;
+  border:none;
+  border-radius:25px;
+  background:#ff1493;
+  color:white;
+  cursor:pointer;
+  font-size:1rem;
+  transition:0.3s;
+  box-shadow:0 0 15px rgba(255,20,147,0.4);
+}
+
+.next-btn:hover{
+  transform:scale(1.05);
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .title{
+    font-size:2.2rem;
+  }
+
+  .photo{
+    width:100%;
+    height:320px;
+  }
+
+  .card{
+    padding:25px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING -->
+
+<script>
+
+const icons=["💖","🎈","🎂","💌","🌷","🌸","✨"];
+
+for(let i=0;i<40;i++){
+
+  let item=document.createElement("div");
+
+  item.className="float";
+
+  item.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+
+  item.style.left=Math.random()*100+"%";
+
+  item.style.fontSize=(Math.random()*25+20)+"px";
+
+  item.style.animationDuration=(Math.random()*5+5)+"s";
+
+  document.body.appendChild(item);
+
+}
+
+</script>
+
+<!-- CONTENT -->
+
+<div class="container">
+
+<h1 class="title">
+Happy Birthday NurJannah
+</h1>
+
+<p class="subtitle">
+✨ 10 Mei 2005 ✨
+</p>
+
+<!-- FOTO -->
+
+<div class="photo-group">
+
+<img src="images/1 (1).png" class="photo">
+
+<img src="images/Screenshot 2026-05-09 231050.png" class="photo">
+
+</div>
+
+<!-- UCAPAN -->
+
+<div class="card">
+<p>
+to my prettiest soulmate, my safe place 🌷🤍
+</p>
+
+<p>
+thank u yaa for always being here for me, even in my worst mood, even pas aku cemberut, ngambek, atau jadi manusia paling nyebelin sekalipun 🥺<br>
+you never leave, and that means a lot for me.
+</p>
+
+<p>
+kamu itu sebaik itu, seramah itu, seceria itu. literally one of the softest souls i’ve ever met 🤍<br>
+selalu dengerin semua cerita aku, selalu bantu aku without judging, dan selalu bikin aku ngerasa ga sendiri.
+</p>
+
+<p>
+you deserve every beautiful thing in this world 🌸<br>
+semoga kamu makin pintar, makin sukses, selalu bahagia, selalu dikelilingi orang-orang baik dan penuh cinta.<br>
+may Allah always protect your heart and your smile ✨
+</p>
+
+<p>
+aku cuma mau bilang…<br>
+thank you for existing and thank you for loving me in the purest way.
+</p>
+
+<p>
+till jannah yaa, sahabatku 🤍<br>
+love u always.
+</p>
+<!-- GIFT -->
+
+<div class="gift">
+
+</div>
+
+<div class="btn-wrap">
+
+<a href="ending.html">
+
+<button class="next-btn">
+Next 
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MUSIC AUTO PLAY -->
+
+<audio autoplay loop>
+
+<source src="music/Nurjanah (1).mp3" type="audio/mp3">
+
+</audio>
+
+</body>
+</html>
